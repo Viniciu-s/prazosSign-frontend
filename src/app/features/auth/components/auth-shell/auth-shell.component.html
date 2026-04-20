@@ -1,0 +1,23 @@
+<mat-toolbar class="auth-shell__toolbar">
+  <div class="auth-shell__brand-group">
+    <span class="auth-shell__brand">Prazos Sign</span>
+    <span class="auth-shell__divider"></span>
+    <span class="auth-shell__product">Assinaturas e aprovações com confiança</span>
+  </div>
+</mat-toolbar>
+
+<main class="auth-shell">
+  <section class="auth-shell__intro">
+    <p class="auth-shell__eyebrow">{{ eyebrow() }}</p>
+    <h1>{{ title() }}</h1>
+    <p class="auth-shell__description">{{ description() }}</p>
+
+    <div class="auth-shell__aside">
+      <ng-content select="[auth-aside]" />
+    </div>
+  </section>
+
+  <section class="auth-shell__panel">
+    <ng-content select="[auth-panel]" />
+  </section>
+</main>

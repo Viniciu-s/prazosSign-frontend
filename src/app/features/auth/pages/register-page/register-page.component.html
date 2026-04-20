@@ -1,0 +1,93 @@
+<app-auth-shell
+  eyebrow="Primeiro acesso"
+  title="Crie sua conta para começar a organizar assinaturas e aprovações."
+  description="Cadastre-se para centralizar documentos, responsáveis e prazos em um único fluxo de trabalho."
+>
+  <div auth-aside class="auth-feature-grid">
+    <article class="auth-feature-card">
+      <span class="auth-feature-card__title">Configuração rápida</span>
+      <p>Comece em poucos minutos com uma conta preparada para o seu fluxo operacional.</p>
+    </article>
+
+    <article class="auth-feature-card">
+      <span class="auth-feature-card__title">Colaboração centralizada</span>
+      <p>Reúna solicitações, assinaturas e responsáveis em uma visão única e organizada.</p>
+    </article>
+
+    <article class="auth-feature-card">
+      <span class="auth-feature-card__title">Mais previsibilidade</span>
+      <p>Mantenha o andamento das etapas visível para reduzir atrasos e retrabalho.</p>
+    </article>
+  </div>
+
+  <div auth-panel>
+    <mat-card class="auth-card">
+      <mat-card-header>
+        <mat-card-title>Criar conta</mat-card-title>
+        <mat-card-subtitle>Preencha seus dados para acessar a plataforma.</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <form [formGroup]="registerForm" class="auth-form" (ngSubmit)="submit()">
+          <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input formControlName="name" matInput placeholder="Seu nome completo" />
+            @if (registerForm.controls.name.invalid && registerForm.controls.name.touched) {
+              <mat-error>{{ getFieldErrorMessage(registerForm.controls.name) }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input formControlName="email" matInput placeholder="voce@empresa.com" type="email" />
+            @if (registerForm.controls.email.invalid && registerForm.controls.email.touched) {
+              <mat-error>{{ getFieldErrorMessage(registerForm.controls.email) }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input formControlName="password" matInput placeholder="********" type="password" />
+            @if (registerForm.controls.password.invalid && registerForm.controls.password.touched) {
+              <mat-error>{{ getFieldErrorMessage(registerForm.controls.password) }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Confirmar senha</mat-label>
+            <input formControlName="confirmPassword" matInput placeholder="********" type="password" />
+            @if (registerForm.controls.confirmPassword.invalid && registerForm.controls.confirmPassword.touched) {
+              <mat-error>{{ getFieldErrorMessage(registerForm.controls.confirmPassword) }}</mat-error>
+            }
+          </mat-form-field>
+
+          @if (backendError()) {
+            <p class="auth-form__error">{{ backendError() }}</p>
+          }
+
+          <button [disabled]="isSubmitting()" class="auth-form__submit" mat-flat-button type="submit">
+            @if (isSubmitting()) {
+              <mat-spinner diameter="20"></mat-spinner>
+              <span>Criando conta...</span>
+            } @else {
+              <span>Criar conta</span>
+            }
+          </button>
+
+          <div class="auth-link-row">
+            <a class="auth-text-link" routerLink="/login">Já tenho conta</a>
+            <a class="auth-text-link" routerLink="/forgot-password">Esqueci minha senha</a>
+          </div>
+
+          <p class="auth-form__support">
+            Ao criar sua conta, você já entra automaticamente na plataforma.
+          </p>
+        </form>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <span class="auth-card__footer">© {{ currentYear }} Prazos Sign</span>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</app-auth-shell>

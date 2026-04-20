@@ -3,7 +3,15 @@ import { inject, Injectable, PLATFORM_ID, computed, signal } from '@angular/core
 import { isPlatformBrowser } from '@angular/common';
 import { catchError, Observable, of, tap } from 'rxjs';
 import { apiConfig, buildApiUrl } from '../config/api.config';
-import { AuthResponse, LoginRequest } from '../../shared/models/auth.models';
+import {
+  AuthResponse,
+  ForgotPasswordRequest,
+  ForgotPasswordResponse,
+  LoginRequest,
+  RegisterRequest,
+  ResetPasswordRequest,
+  ResetPasswordResponse
+} from '../../shared/models/auth.models';
 
 const AUTH_STORAGE_KEY = 'prazos-sign.auth';
 
@@ -18,6 +26,12 @@ export class AuthService {
   readonly session = this.sessionState.asReadonly();
   readonly user = computed(() => this.sessionState()?.user ?? null);
   readonly isAuthenticated = computed(() => Boolean(this.sessionState()?.accessToken));
+
+  register(payload: RegisterRequest): Observable<AuthResponse> {
+    return this.http
+      .post<AuthResponse>(buildApiUrl(apiConfig.endpoints.register), payload)
+      .pipe(tap((response) => this.persistSession(response)));
+  }
 
   login(credentials: LoginRequest): Observable<AuthResponse> {
     return this.http
@@ -35,6 +49,14 @@ export class AuthService {
       catchError(() => of(void 0)),
       tap(() => this.clearSession())
     );
+  }
+
+  forgotPassword(payload: ForgotPasswordRequest): Observable<ForgotPasswordResponse> {
+    return this.http.post<ForgotPasswordResponse>(buildApiUrl(apiConfig.endpoints.forgotPassword), payload);
+  }
+
+  resetPassword(payload: ResetPasswordRequest): Observable<ResetPasswordResponse> {
+    return this.http.post<ResetPasswordResponse>(buildApiUrl(apiConfig.endpoints.resetPassword), payload);
   }
 
   getAccessToken(): string | null {
