@@ -1,0 +1,80 @@
+<mat-toolbar class="auth-toolbar">
+  <div class="auth-toolbar__brand-group">
+    <span class="auth-toolbar__brand">Prazos Sign</span>
+    <span class="auth-toolbar__divider"></span>
+    <span class="auth-toolbar__product">Assinaturas e aprovações com confiança</span>
+  </div>
+</mat-toolbar>
+
+<main class="login-page">
+  <section class="login-page__intro">
+    <p class="login-page__eyebrow">Gestão segura de documentos</p>
+    <h1>Centralize assinaturas, responsáveis e prazos em uma experiência mais fluida.</h1>
+    <p class="login-page__description">
+      Entre com sua conta para acompanhar documentos, aprovações e etapas críticas com mais controle e agilidade.
+    </p>
+
+    <div class="login-page__highlights">
+      <article class="highlight-card">
+        <span class="highlight-card__title">Visão clara</span>
+        <p>Acompanhe cada etapa com uma interface organizada e focada no que importa.</p>
+      </article>
+
+      <article class="highlight-card">
+        <span class="highlight-card__title">Mais agilidade</span>
+        <p>Reduza retrabalho e mantenha processos de assinatura avançando com consistência.</p>
+      </article>
+
+      <article class="highlight-card">
+        <span class="highlight-card__title">Acesso seguro</span>
+        <p>Proteja sua operação com autenticação e gestão centralizada da jornada do usuário.</p>
+      </article>
+    </div>
+  </section>
+
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Bem-vindo de volta</mat-card-title>
+      <mat-card-subtitle>Informe suas credenciais para acessar sua área de trabalho.</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="loginForm" class="login-form" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail</mat-label>
+          <input formControlName="email" matInput placeholder="voce@empresa.com" type="email" />
+          @if (loginForm.controls.email.invalid && loginForm.controls.email.touched) {
+            <mat-error>{{ getFieldErrorMessage(loginForm.controls.email) }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input formControlName="password" matInput placeholder="********" type="password" />
+          @if (loginForm.controls.password.invalid && loginForm.controls.password.touched) {
+            <mat-error>{{ getFieldErrorMessage(loginForm.controls.password) }}</mat-error>
+          }
+        </mat-form-field>
+
+        @if (backendError()) {
+          <p class="login-form__error">{{ backendError() }}</p>
+        }
+
+        <button [disabled]="isSubmitting()" class="login-form__submit" mat-flat-button type="submit">
+          @if (isSubmitting()) {
+            <mat-spinner diameter="20"></mat-spinner>
+            <span>Autenticando...</span>
+          } @else {
+            <span>Acessar plataforma</span>
+          }
+        </button>
+
+        <p class="login-form__support">Use seu e-mail profissional e sua senha para continuar.</p>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <span class="login-card__footer">© {{ currentYear }} Prazos Sign</span>
+    </mat-card-actions>
+  </mat-card>
+</main>

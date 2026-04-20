@@ -1,0 +1,117 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.dashboard-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0 1.5rem;
+  background: rgba(255, 255, 255, 0.78);
+  border-bottom: 1px solid var(--surface-border);
+  backdrop-filter: blur(16px);
+}
+
+.dashboard-toolbar__brand {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.dashboard-toolbar__spacer {
+  flex: 1;
+}
+
+.dashboard-page {
+  padding: 2rem clamp(1.25rem, 4vw, 4rem) 3rem;
+}
+
+.dashboard-page__hero {
+  max-width: 50rem;
+}
+
+.dashboard-page__eyebrow {
+  margin: 0 0 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2d6ea3;
+}
+
+.dashboard-page__hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.dashboard-page__description {
+  margin: 1.25rem 0 0;
+  max-width: 44rem;
+  font-size: 1.04rem;
+  line-height: 1.7;
+  color: var(--text-soft);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.dashboard-grid mat-card {
+  border: 1px solid var(--surface-border);
+  border-radius: 1.5rem;
+  background: var(--surface-strong);
+  box-shadow: 0 16px 44px rgba(23, 47, 75, 0.1);
+}
+
+.dashboard-details {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+}
+
+.dashboard-details div {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(24, 49, 77, 0.08);
+}
+
+.dashboard-details div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.dashboard-details dt {
+  margin-bottom: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #5d7289;
+}
+
+.dashboard-details dd {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-main);
+  word-break: break-word;
+}
+
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 599px) {
+  .dashboard-toolbar {
+    padding: 0 1rem;
+  }
+
+  .dashboard-page {
+    padding: 1.25rem 1rem 2rem;
+  }
+}

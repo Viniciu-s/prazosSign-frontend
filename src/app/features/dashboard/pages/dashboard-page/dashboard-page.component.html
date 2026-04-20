@@ -1,0 +1,78 @@
+<mat-toolbar class="dashboard-toolbar">
+  <span class="dashboard-toolbar__brand">Prazos Sign</span>
+  <span class="dashboard-toolbar__spacer"></span>
+  <button [disabled]="isLoggingOut()" mat-stroked-button type="button" (click)="logout()">
+    @if (isLoggingOut()) {
+      Saindo...
+    } @else {
+      Sair
+    }
+  </button>
+</mat-toolbar>
+
+<main class="dashboard-page">
+  <section class="dashboard-page__hero">
+    <p class="dashboard-page__eyebrow">Sessão autenticada</p>
+    <h1>Login conectado ao backend com sucesso.</h1>
+    <p class="dashboard-page__description">
+      O token JWT retornado pelo backend local já está sendo salvo no navegador e o frontend está pronto
+      para enviar o cabeçalho <strong>Authorization: Bearer ...</strong> nas próximas chamadas.
+    </p>
+  </section>
+
+  <section class="dashboard-grid">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Usuário autenticado</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <dl class="dashboard-details">
+          <div>
+            <dt>Nome</dt>
+            <dd>{{ user()?.name }}</dd>
+          </div>
+          <div>
+            <dt>E-mail</dt>
+            <dd>{{ user()?.email }}</dd>
+          </div>
+          <div>
+            <dt>Criado em</dt>
+            <dd>{{ user()?.createdAt | date: 'dd/MM/yyyy HH:mm' }}</dd>
+          </div>
+          <div>
+            <dt>Atualizado em</dt>
+            <dd>{{ user()?.updatedAt | date: 'dd/MM/yyyy HH:mm' }}</dd>
+          </div>
+        </dl>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Ambiente atual</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <dl class="dashboard-details">
+          <div>
+            <dt>Chamadas do frontend</dt>
+            <dd>{{ frontendApiPath }}</dd>
+          </div>
+          <div>
+            <dt>Proxy de desenvolvimento</dt>
+            <dd>{{ developmentTargetUrl }}/auth/login</dd>
+          </div>
+          <div>
+            <dt>Token salvo</dt>
+            <dd>{{ session()?.accessToken ? 'Sim' : 'Não' }}</dd>
+          </div>
+          <div>
+            <dt>Tipo</dt>
+            <dd>{{ session()?.tokenType }}</dd>
+          </div>
+        </dl>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</main>

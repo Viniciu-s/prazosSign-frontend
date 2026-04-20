@@ -1,8 +1,59 @@
 
+@use '@angular/material' as mat;
+
+html {
+  color-scheme: light;
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    density: 0,
+    typography: (
+      brand-family: ('Aptos', 'Segoe UI', 'Helvetica Neue', sans-serif),
+      plain-family: ('Aptos', 'Segoe UI', 'Helvetica Neue', sans-serif),
+    ),
+  ));
+}
+
+:root {
+  --app-bg:
+    radial-gradient(circle at top, rgba(132, 205, 255, 0.32), transparent 36%),
+    linear-gradient(180deg, #f4f9ff 0%, #eef4fb 56%, #e7edf6 100%);
+  --surface: rgba(255, 255, 255, 0.84);
+  --surface-strong: rgba(255, 255, 255, 0.94);
+  --surface-border: rgba(22, 50, 79, 0.12);
+  --text-main: #18314d;
+  --text-soft: #4e647d;
+  --success: #1d6f42;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-  font-family: Roboto, Arial, sans-serif;
+  font-family: 'Aptos', 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+body {
+  background: var(--app-bg);
+  color: var(--text-main);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: #17304a;
+  --mdc-snackbar-supporting-text-color: #f4f8ff;
 }
