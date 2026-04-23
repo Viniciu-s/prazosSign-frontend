@@ -7,7 +7,8 @@ export const apiConfig = {
     logout: '/auth/logout',
     forgotPassword: '/auth/forgot-password',
     resetPassword: '/auth/reset-password',
-    groups: '/groups'
+    groups: '/groups',
+    documents: '/documents'
   }
 } as const;
 

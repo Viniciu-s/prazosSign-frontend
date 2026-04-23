@@ -1,0 +1,84 @@
+<section class="groups-page">
+  <header class="groups-page__hero">
+    <div>
+      <h1>Organize documentos por contexto, time ou cliente.</h1>
+      <p class="groups-page__description">
+        Cada grupo funciona como uma pasta. Clique em um card para entrar e visualizar os documentos
+        vinculados a ele.
+      </p>
+    </div>
+
+    <button class="groups-page__cta" type="button" (click)="openCreateGroupForm()">
+      Novo grupo
+    </button>
+  </header>
+
+  <section class="groups-page__content">
+    <article class="groups-panel">
+      <div class="groups-panel__header">
+        <span class="groups-panel__meta">{{ groups().length }} itens</span>
+      </div>
+
+      @if (isLoadingGroups()) {
+        <div class="groups-empty-state groups-empty-state--loading">
+          <mat-spinner diameter="28"></mat-spinner>
+          <p>Carregando grupos...</p>
+        </div>
+      } @else if (loadError()) {
+        <div class="groups-empty-state">
+          <h3>Nao foi possivel carregar os grupos.</h3>
+          <p>{{ loadError() }}</p>
+          <button class="groups-inline-action" type="button" (click)="reloadGroups()">
+            Tentar novamente
+          </button>
+        </div>
+      } @else if (groups().length === 0) {
+        <div class="groups-empty-state">
+          <h3>Nenhum grupo criado ainda.</h3>
+          <p>Crie um grupo para começar a separar documentos por area, cliente ou fluxo.</p>
+          <button class="groups-inline-action" type="button" (click)="openCreateGroupForm()">
+            Criar primeiro grupo
+          </button>
+        </div>
+      } @else {
+        <div class="groups-grid">
+          @for (group of groups(); track group.id) {
+            <article class="group-card" tabindex="0" (click)="openGroup(group)">
+              <div class="group-card__header">
+                <div>
+                  <h3>{{ group.name }}</h3>
+                  <p>Criado em {{ group.createdAt | date: 'dd/MM/yyyy HH:mm' }}</p>
+                </div>
+                <span class="group-card__badge">Abrir</span>
+              </div>
+
+              <p class="group-card__copy">
+                Entre no grupo para visualizar os documentos vinculados e acompanhar o contexto dessa
+                organizacao.
+              </p>
+
+              <div class="group-card__actions">
+                <button class="groups-secondary-action" type="button" (click)="startEditGroup($event, group)">
+                  Renomear
+                </button>
+
+                <button
+                  class="groups-secondary-action groups-secondary-action--danger"
+                  [disabled]="deletingGroupId() === group.id"
+                  type="button"
+                  (click)="deleteGroup($event, group)"
+                >
+                  @if (deletingGroupId() === group.id) {
+                    Excluindo...
+                  } @else {
+                    Excluir
+                  }
+                </button>
+              </div>
+            </article>
+          }
+        </div>
+      }
+    </article>
+  </section>
+</section>

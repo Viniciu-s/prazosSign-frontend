@@ -1,0 +1,51 @@
+<section class="group-documents-page">
+  <button class="group-documents-page__back" type="button" (click)="goBack()">
+    Voltar para grupos
+  </button>
+
+  @if (isLoading()) {
+    <div class="group-documents-empty group-documents-empty--loading">
+      <mat-spinner diameter="30"></mat-spinner>
+      <p>Carregando documentos do grupo...</p>
+    </div>
+  } @else if (loadError()) {
+    <div class="group-documents-empty">
+      <h1>Grupo indisponivel</h1>
+      <p>{{ loadError() }}</p>
+    </div>
+  } @else {
+    <header class="group-documents-page__hero">
+      <div>
+        <h1>{{ group()?.name }}</h1>
+        <p class="group-documents-page__description">
+          Aqui ficam os documentos atualmente vinculados a este grupo.
+        </p>
+      </div>
+
+      <span class="group-documents-page__meta">{{ documents().length }} documentos</span>
+    </header>
+
+    @if (documents().length === 0) {
+      <div class="group-documents-empty">
+        <h2>Nenhum documento neste grupo.</h2>
+        <p>Quando houver documentos vinculados, eles aparecerao listados aqui.</p>
+      </div>
+    } @else {
+      <div class="group-documents-list">
+        @for (document of documents(); track document.id) {
+          <article class="document-card">
+            <div class="document-card__header">
+              <div>
+                <h2>{{ document.title }}</h2>
+                <p>Atualizado em {{ document.updatedAt | date: 'dd/MM/yyyy HH:mm' }}</p>
+              </div>
+              <span class="document-card__status">{{ getStatusLabel(document.status) }}</span>
+            </div>
+
+            <p class="document-card__content">{{ document.content }}</p>
+          </article>
+        }
+      </div>
+    }
+  }
+</section>

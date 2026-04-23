@@ -1,0 +1,47 @@
+:host {
+  display: block;
+}
+
+.section-placeholder-page {
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+  border: 1px solid rgba(16, 39, 63, 0.08);
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 24px 70px rgba(21, 43, 69, 0.08);
+}
+
+.section-placeholder-page__eyebrow {
+  margin: 0 0 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+
+.section-placeholder-page h1,
+.section-placeholder-card h2 {
+  margin: 0;
+}
+
+.section-placeholder-page__description,
+.section-placeholder-card p {
+  margin: 1rem 0 0;
+  color: #60758b;
+  line-height: 1.7;
+}
+
+.section-placeholder-card {
+  margin-top: 2rem;
+  padding: 1.35rem;
+  border: 1px solid rgba(19, 38, 61, 0.08);
+  border-radius: 1.4rem;
+  background: #fff;
+}
+
+@media (max-width: 599px) {
+  .section-placeholder-page {
+    padding: 1.1rem;
+    border-radius: 1.5rem;
+  }
+}

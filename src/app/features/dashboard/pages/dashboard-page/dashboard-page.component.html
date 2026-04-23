@@ -1,111 +1,32 @@
-<main class="dashboard-shell">
-  <app-dashboard-sidebar
-    class="dashboard-shell__sidebar"
-    [items]="sidebarItems()"
-    [isLoggingOut]="isLoggingOut()"
-    [userName]="user()?.name ?? 'Equipe Prazos Sign'"
-    [userEmail]="user()?.email ?? 'produto@prazos.sign'"
-    (itemClick)="handleSidebarItemClick($event)"
-    (logoutClick)="logout()"
-  />
+<section class="dashboard-home">
+  <header class="dashboard-home__hero">
+    <div>
+      <p class="dashboard-home__eyebrow">Home</p>
+      <h1>Painel inicial para acompanhar o fluxo do produto.</h1>
+    </div>
 
-  <section class="dashboard-home">
-    <header class="dashboard-home__hero">
-      <div>
-        <p class="dashboard-home__eyebrow">{{ sectionEyebrow() }}</p>
-        <h1>{{ sectionTitle() }}</h1>
-        <p class="dashboard-home__description">{{ sectionDescription() }}</p>
-      </div>
+  </header>
 
-      @if (isGroupsSection()) {
-        <button class="dashboard-home__cta" type="button" (click)="openCreateGroupForm()">
-          Criar grupo
-        </button>
-      }
-    </header>
+  <section class="dashboard-home__grid">
+    <article class="dashboard-home__card">
+      <p class="dashboard-home__card-eyebrow">Organizacao</p>
+      <h2>Grupos</h2>
+      <p>Use grupos como pastas para separar documentos por cliente, area ou etapa do processo.</p>
+      <a class="dashboard-home__link" routerLink="/groups">Abrir grupos</a>
+    </article>
 
-    @if (isGroupsSection()) {
-      <section class="dashboard-home__content">
-        <article class="dashboard-panel">
-          <div class="dashboard-panel__header">
-            <div>
-              <p class="dashboard-panel__eyebrow">Listagem</p>
-              <h2>Seus grupos</h2>
-            </div>
-            <span class="dashboard-panel__meta">{{ groups().length }} itens</span>
-          </div>
+    <article class="dashboard-home__card">
+      <p class="dashboard-home__card-eyebrow">Biblioteca</p>
+      <h2>Documentos</h2>
+      <p>A listagem completa de documentos tera filtros e a navegacao principal do fluxo.</p>
+      <a class="dashboard-home__link" routerLink="/documents">Ver estrutura</a>
+    </article>
 
-          @if (isLoadingGroups()) {
-            <div class="dashboard-empty-state dashboard-empty-state--loading">
-              <mat-spinner diameter="28"></mat-spinner>
-              <p>Carregando grupos...</p>
-            </div>
-          } @else if (groups().length === 0) {
-            <div class="dashboard-empty-state">
-              <h3>Nenhum grupo criado ainda.</h3>
-              <p>Comece criando seu primeiro grupo para organizar os documentos do workspace.</p>
-              <button class="dashboard-inline-action" type="button" (click)="openCreateGroupForm()">
-                Criar primeiro grupo
-              </button>
-            </div>
-          } @else {
-            <div class="dashboard-group-list">
-              @for (group of groups(); track group.id) {
-                <article class="dashboard-group-card">
-                  <div class="dashboard-group-card__content">
-                    <div>
-                      <h3>{{ group.name }}</h3>
-                      <p>Criado em {{ group.createdAt | date: 'dd/MM/yyyy HH:mm' }}</p>
-                    </div>
-
-                    <div class="dashboard-group-card__actions">
-                      <button
-                        class="dashboard-secondary-action"
-                        type="button"
-                        (click)="startEditGroup(group)"
-                      >
-                        Editar
-                      </button>
-
-                      <button
-                        class="dashboard-secondary-action dashboard-secondary-action--danger"
-                        [disabled]="deletingGroupId() === group.id"
-                        type="button"
-                        (click)="deleteGroup(group)"
-                      >
-                        @if (deletingGroupId() === group.id) {
-                          Excluindo...
-                        } @else {
-                          Excluir
-                        }
-                      </button>
-                    </div>
-                  </div>
-                </article>
-              }
-            </div>
-          }
-        </article>
-      </section>
-    } @else {
-      <section class="dashboard-home__content">
-        <article class="dashboard-panel">
-          <div class="dashboard-panel__header">
-            <div>
-              <p class="dashboard-panel__eyebrow">Proxima etapa</p>
-              <h2>{{ activeSidebarItem() }}</h2>
-            </div>
-          </div>
-
-          <div class="dashboard-empty-state dashboard-empty-state--section">
-            <h3>Esta area sera conectada na sequencia.</h3>
-            <p>
-              A navegacao ja responde ao clique, e esta secao fica pronta para receber a implementacao
-              funcional nas proximas etapas do dashboard.
-            </p>
-          </div>
-        </article>
-      </section>
-    }
+    <article class="dashboard-home__card">
+      <p class="dashboard-home__card-eyebrow">Acompanhamento</p>
+      <h2>Pendentes</h2>
+      <p>As proximas etapas vao reunir tudo o que aguarda assinatura, validacao ou retorno.</p>
+      <a class="dashboard-home__link" routerLink="/pending">Ver pendentes</a>
+    </article>
   </section>
-</main>
+</section>

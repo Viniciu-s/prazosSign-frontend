@@ -1,0 +1,119 @@
+:host {
+  display: block;
+}
+
+.group-documents-page {
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+  border: 1px solid rgba(16, 39, 63, 0.08);
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 24px 70px rgba(21, 43, 69, 0.08);
+}
+
+.group-documents-page__back {
+  min-height: 2.8rem;
+  padding: 0 1rem;
+  border: 1px solid rgba(19, 38, 61, 0.12);
+  border-radius: 999px;
+  background: #fff;
+  color: #28445f;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.group-documents-page__hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.group-documents-page__eyebrow {
+  margin: 0 0 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+
+.group-documents-page__hero h1,
+.group-documents-empty h1,
+.group-documents-empty h2,
+.document-card h2 {
+  margin: 0;
+}
+
+.group-documents-page__description,
+.group-documents-empty p,
+.document-card p {
+  margin: 0.8rem 0 0;
+  color: #60758b;
+  line-height: 1.6;
+}
+
+.group-documents-page__meta,
+.document-card__status {
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  background: #f3f6fa;
+  color: #5e7389;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.group-documents-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.8rem;
+}
+
+.document-card,
+.group-documents-empty {
+  padding: 1.35rem;
+  border: 1px solid rgba(19, 38, 61, 0.08);
+  border-radius: 1.4rem;
+  background: #fff;
+}
+
+.document-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.document-card__content {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.group-documents-empty {
+  display: grid;
+  justify-items: start;
+  gap: 0.6rem;
+  margin-top: 1.8rem;
+}
+
+.group-documents-empty--loading {
+  justify-items: center;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .group-documents-page__hero,
+  .document-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 599px) {
+  .group-documents-page {
+    padding: 1.1rem;
+    border-radius: 1.5rem;
+  }
+}

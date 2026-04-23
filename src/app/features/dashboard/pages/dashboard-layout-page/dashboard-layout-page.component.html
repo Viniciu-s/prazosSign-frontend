@@ -1,0 +1,15 @@
+<main class="dashboard-shell">
+  <app-dashboard-sidebar
+    class="dashboard-shell__sidebar"
+    [items]="sidebarItems()"
+    [isLoggingOut]="isLoggingOut()"
+    [userName]="user()?.name ?? 'Equipe Prazos Sign'"
+    [userEmail]="user()?.email ?? 'produto@prazos.sign'"
+    (itemClick)="handleSidebarItemClick($event)"
+    (logoutClick)="logout()"
+  />
+
+  <section class="dashboard-shell__content">
+    <router-outlet />
+  </section>
+</main>
