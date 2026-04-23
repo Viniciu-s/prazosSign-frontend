@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>{{ dialogTitle() }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="groupForm" class="group-dialog__form" id="group-dialog-form" (ngSubmit)="submit()">
+    <p class="group-dialog__description">
+      Informe o nome do grupo para organizar seus documentos dentro do workspace.
+    </p>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nome do grupo</mat-label>
+      <input formControlName="name" matInput maxlength="255" placeholder="Ex.: Contratos" />
+      @if (groupForm.controls.name.invalid && groupForm.controls.name.touched) {
+        <mat-error>{{ getNameErrorMessage() }}</mat-error>
+      }
+    </mat-form-field>
+
+    @if (errorMessage()) {
+      <p class="group-dialog__error">{{ errorMessage() }}</p>
+    }
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button type="button" (click)="close()">Cancelar</button>
+  <button [disabled]="isSubmitting()" form="group-dialog-form" mat-flat-button type="submit">
+    @if (isSubmitting()) {
+      <mat-spinner diameter="18"></mat-spinner>
+      <span>Salvando...</span>
+    } @else {
+      <span>{{ submitLabel() }}</span>
+    }
+  </button>
+</mat-dialog-actions>

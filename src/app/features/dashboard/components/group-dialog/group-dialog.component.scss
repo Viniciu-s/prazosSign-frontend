@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+.group-dialog__form {
+  display: grid;
+  gap: 1rem;
+  min-width: min(30rem, 78vw);
+  padding-top: 0.25rem;
+}
+
+.group-dialog__description,
+.group-dialog__error {
+  margin: 0;
+  color: #60758b;
+  line-height: 1.6;
+}
+
+.group-dialog__error {
+  color: #a23535;
+}
+
+mat-dialog-actions button[mat-flat-button] {
+  gap: 0.5rem;
+}
+
+@media (max-width: 599px) {
+  .group-dialog__form {
+    min-width: auto;
+  }
+}

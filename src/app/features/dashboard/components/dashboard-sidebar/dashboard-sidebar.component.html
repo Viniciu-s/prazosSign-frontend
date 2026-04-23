@@ -1,0 +1,47 @@
+<aside class="dashboard-sidebar">
+  <div class="dashboard-sidebar__brand">
+    <div class="dashboard-sidebar__brand-mark">PS</div>
+    <div>
+      <p class="dashboard-sidebar__eyebrow">Workspace</p>
+      <strong>Prazos Sign</strong>
+    </div>
+  </div>
+
+  <nav aria-label="Menu principal" class="dashboard-sidebar__nav">
+    @for (item of items(); track item.label) {
+      <button
+        class="dashboard-sidebar__link"
+        [class.dashboard-sidebar__link--active]="item.active"
+        type="button"
+        (click)="itemClick.emit(item.label)"
+      >
+        <span>{{ item.label }}</span>
+        <small>{{ item.description }}</small>
+      </button>
+    }
+  </nav>
+
+  <button
+    class="dashboard-sidebar__logout"
+    [disabled]="isLoggingOut()"
+    type="button"
+    (click)="logoutClick.emit()"
+  >
+    @if (isLoggingOut()) {
+      Saindo...
+    } @else {
+      Sair
+    }
+  </button>
+
+  <section class="dashboard-sidebar__profile" aria-label="Resumo do perfil">
+    <div class="dashboard-sidebar__avatar">
+      {{ userName().slice(0, 1) }}
+    </div>
+
+    <div class="dashboard-sidebar__profile-copy">
+      <strong>{{ userName() }}</strong>
+      <span>{{ userEmail() }}</span>
+    </div>
+  </section>
+</aside>

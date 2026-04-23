@@ -19,14 +19,17 @@ html {
 
 :root {
   --app-bg:
-    radial-gradient(circle at top, rgba(132, 205, 255, 0.32), transparent 36%),
-    linear-gradient(180deg, #f4f9ff 0%, #eef4fb 56%, #e7edf6 100%);
+    radial-gradient(circle at top left, rgba(117, 219, 209, 0.24), transparent 28%),
+    radial-gradient(circle at top right, rgba(120, 170, 255, 0.18), transparent 32%),
+    linear-gradient(180deg, #f5f8fc 0%, #edf3f8 54%, #e6edf4 100%);
   --surface: rgba(255, 255, 255, 0.84);
   --surface-strong: rgba(255, 255, 255, 0.94);
   --surface-border: rgba(22, 50, 79, 0.12);
   --text-main: #18314d;
   --text-soft: #4e647d;
   --success: #1d6f42;
+  --brand: #0f766e;
+  --brand-strong: #1d4ed8;
 }
 
 html, body {
